@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateFormData } from "./../../redux/actions";
 import { Country, State, City } from "country-state-city";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
+import { nextStep, previousStep } from "../../redux/stepActions";
 
 const Step2 = () => {
   const formData = useSelector((state) => state.form);
@@ -43,11 +44,13 @@ const Step2 = () => {
       })
     );
     console.log(formData);
+    dispatch(nextStep());
     // Proceed to the next step or perform any additional logic
   };
 
   const handlePrevious = () => {
     //
+    dispatch(previousStep());
   };
 
   const countries = Country.getAllCountries();
@@ -68,7 +71,7 @@ const Step2 = () => {
               <button
                 type="button"
                 className="p-2 rounded-full hover:bg-transparent focus:outline-none"
-                onClick={handleNext}
+                onClick={handlePrevious}
               >
                 <AiOutlineArrowLeft
                   className="text-xl transform hover:scale-110 transition-transform"

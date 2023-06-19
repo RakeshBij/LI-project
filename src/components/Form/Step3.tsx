@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFormData } from "./../../redux/actions";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
+import { nextStep, previousStep } from "../../redux/stepActions";
 
 const Step3 = () => {
   const formData = useSelector((state) => state.form);
@@ -41,10 +42,11 @@ const Step3 = () => {
     // You can perform additional validation or data manipulation here
     console.log("Step 3 Data:", { file });
     // Call a function to proceed to the next step
+    dispatch(nextStep());
   };
 
   const handlePrevious = () => {
-    // Perform any logic for going back to the previous step
+    dispatch(previousStep());
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {

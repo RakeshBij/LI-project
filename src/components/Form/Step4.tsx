@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateFormData } from "./../../redux/actions";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
+import { nextStep, previousStep } from "../../redux/stepActions";
 
 const Step4 = () => {
   const formData = useSelector((state) => state.form);
   const dispatch = useDispatch();
   const [files, setFiles] = useState([]);
   const [geolocationStatus, setGeolocationStatus] = useState("Not Captured");
+  const [geolocation, setGeolocation] = useState("");
   const [isDragOver, setIsDragOver] = useState(false);
 
   useEffect(() => {
@@ -18,6 +20,10 @@ const Step4 = () => {
         (position) => {
           setGeolocationStatus("Captured");
           console.log("Geolocation Coordinates:", position.coords);
+          setGeolocation(
+            `${position.coords.latitude},${position.coords.longitude}`
+          );
+
           // You can store the coordinates or perform any additional logic here
         },
         (error) => {
@@ -30,8 +36,9 @@ const Step4 = () => {
     }
   }, []);
 
-  const handleFileChange = (event) => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFiles = Array.from(event.target.files);
+    console.log(selectedFiles);
     setFiles(selectedFiles);
   };
 
@@ -57,14 +64,16 @@ const Step4 = () => {
       updateFormData({
         files,
         geolocationStatus,
+        geolocation,
       })
     );
     console.log(formData);
+    dispatch(nextStep());
     // Proceed to the next step or perform any additional logic
   };
 
   const handlePrevious = () => {
-    // Go back to the previous step if needed
+    dispatch(previousStep());
   };
 
   const handleFileButtonClick = () => {
@@ -143,6 +152,7 @@ const Step4 = () => {
                 </label>
                 <input
                   type="file"
+                  id="file-upload"
                   className="hidden"
                   accept=".png,.pdf"
                   multiple

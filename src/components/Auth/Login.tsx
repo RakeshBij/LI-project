@@ -9,7 +9,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   let index = 0,
     interval = 1000;
@@ -39,27 +39,29 @@ const Login = () => {
       setErrorMessage("Invalid email address");
       return;
     }
+    navigate("/dashboard");
+    localStorage.setItem("token", "asdf");
+    // axios
+    //   .post(API_BASE_URL + API_ENDPOINT_LOGIN, { email, password })
+    //   .then((response: AxiosResponse<{ authToken: string }>) => {
+    //     const authToken = response.data.authToken;
 
-    axios
-      .post(API_BASE_URL + API_ENDPOINT_LOGIN, { email, password })
-      .then((response: AxiosResponse<{ authToken: string }>) => {
-        const authToken = response.data.authToken;
-
-        console.log(authToken);
-        localStorage.setItem("token", authToken);
-      })
-      .catch((error) => {
-        if (error.response) {
-          // Request was made and server responded with a status code
-          setErrorMessage("Login failed. Please check your credentials.");
-        } else if (error.request) {
-          // Request was made but no response received
-          setErrorMessage("Unable to connect to the server.");
-        } else {
-          // Something else happened during the request
-          setErrorMessage("An unexpected error occurred.");
-        }
-      });
+    //     console.log(authToken);
+    //     localStorage.setItem("token", authToken);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //     if (error.response) {
+    //       // Request was made and server responded with a status code
+    //       setErrorMessage("Login failed. Please check your credentials.");
+    //     } else if (error.request) {
+    //       // Request was made but no response received
+    //       setErrorMessage("Unable to connect to the server.");
+    //     } else {
+    //       // Something else happened during the request
+    //       setErrorMessage("An unexpected error occurred.");
+    //     }
+    //   });
   };
 
   return (
@@ -150,7 +152,7 @@ const Login = () => {
             href="#"
             className="ml-auto text-sm text-blue-700 hover:dark:text-blue-500"
             onClick={() => {
-              //   navigate("/ForgotPassword");
+              navigate("/ForgotPassword");
             }}
           >
             Forgot Password?

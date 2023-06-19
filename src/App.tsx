@@ -3,16 +3,22 @@ import "./index.css";
 import Login from "./components/Auth/Login";
 import ForgotPassowrd from "./components/Auth/ForgotPassword";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Step1 from "./components/Form/Step1";
-import Step2 from "./components/Form/Step2";
-import Step3 from "./components/Form/Step3";
-import Step4 from "./components/Form/Step4";
-import Step5 from "./components/Form/Step5";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import Dashboard from "./components/Form/Dashboard";
+import Step1 from "./Step1";
+import Step2 from "./Step2";
+import Step3 from "./Step3";
+import Step4 from "./Step4";
+import Step5 from "./Step5";
+import { useSelector } from "react-redux";
 
 const App: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formValues, setFormValues] = useState({});
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const stepData = useSelector((state) => state.step);
+  console.log(stepData);
 
   const handleFormSubmit = () => {
     // Handle form submission logic here
@@ -38,16 +44,15 @@ const App: React.FC = () => {
 
   const token = localStorage.getItem("token");
 
-  if (!token) {
-    return <Login />;
-  }
-
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Login />} />
+        {localStorage.getItem("token")} ?{" "}
+        <Route path="/dashboard" element={<Dashboard />} /> :
+        <Route path="/" element={<Login />} />
         <Route path="/ForgotPassword" element={<ForgotPassowrd />} />
       </Routes>
+      <ToastContainer position="top-center" />
     </Router>
     // <div>
     //   {currentStep === 1 && (

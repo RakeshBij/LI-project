@@ -2,10 +2,11 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import formReducer from "./reducers";
+import stepReducer from "./stepReducer";
 
 const rootReducer = combineReducers({
   form: formReducer,
-  // other reducers...
+  step: stepReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

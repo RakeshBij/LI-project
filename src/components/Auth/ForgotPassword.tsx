@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// toast.configure();
-
 const ForgotPassword: React.FC = () => {
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
-  const handleForgotPassword = () => {
+  const handleForgotPassword = (e) => {
+    e.preventDefault();
     // Perform the necessary logic for forgot password
     // You can make an API call to send a password reset email or update the password
 
@@ -17,6 +18,8 @@ const ForgotPassword: React.FC = () => {
       autoClose: 3000, // Close the notification after 3 seconds
       hideProgressBar: true,
     });
+
+    navigate("/");
   };
 
   return (
