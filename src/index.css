@@ -123,6 +123,17 @@ h1 > .magic > .magic-text {
   white-space: nowrap;
 }
 
-/* -- YouTube Link Styles -- */
+.PhoneInputInput {
+  border: none;
+  border-radius: 8px;
+}
 
-/* ---------------------------------------------- */
+.PhoneInput {
+  border-width: 1px;
+  border-radius: 0.5rem;
+  padding: 0.325rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(17 24 39 / var(1));
+  background-color: #f9fafb;
+}

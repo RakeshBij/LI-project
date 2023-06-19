@@ -1,11 +1,16 @@
-// reducers.js
 const initialState = {
   name: "",
   email: "",
-  phone: "",
-  address: "",
-  files: [],
+  phone_number: "",
+  address_1: "",
+  address_2: "",
+  city: "",
+  state: "",
+  pincode: "",
+  country: "",
   geolocation: "",
+  single_file: "",
+  multi_file: [],
 };
 
 const formReducer = (state = initialState, action) => {

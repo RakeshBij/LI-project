@@ -55,6 +55,11 @@ const Step5 = () => {
     setTimeout(() => {
       localStorage.clear();
       navigate("/");
+      dispatch(previousStep());
+      dispatch(previousStep());
+      dispatch(previousStep());
+      dispatch(previousStep());
+      window.location.reload();
     }, 4000);
   };
 

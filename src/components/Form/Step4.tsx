@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateFormData } from "./../../redux/actions";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 import { nextStep, previousStep } from "../../redux/stepActions";
+import { updateFormData } from "./../../redux/actions";
 
 const Step4 = () => {
   const formData = useSelector((state) => state.form);
   const dispatch = useDispatch();
-  const [files, setFiles] = useState([]);
+  const [multi_files, setMultiFiles] = useState([]);
   const [geolocationStatus, setGeolocationStatus] = useState("Not Captured");
   const [geolocation, setGeolocation] = useState("");
   const [isDragOver, setIsDragOver] = useState(false);
@@ -36,10 +36,10 @@ const Step4 = () => {
     }
   }, []);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (event) => {
     const selectedFiles = Array.from(event.target.files);
     console.log(selectedFiles);
-    setFiles(selectedFiles);
+    setMultiFiles(selectedFiles);
   };
 
   const handleDragOver = (event) => {
@@ -55,16 +55,14 @@ const Step4 = () => {
     event.preventDefault();
     setIsDragOver(false);
     const selectedFiles = Array.from(event.dataTransfer.files);
-    setFiles(selectedFiles);
+    setMultiFiles(selectedFiles);
   };
 
   const handleNext = () => {
-    // Dispatch an action to update the form data in the Redux store
     dispatch(
       updateFormData({
-        files,
-        geolocationStatus,
-        geolocation,
+        multi_file: formData.multi_files,
+        geolocation: formData.geolocation,
       })
     );
     console.log(formData);
@@ -83,7 +81,7 @@ const Step4 = () => {
     }
   };
 
-  const isFilesValid = files.length > 0 && files.length <= 5;
+  const isFilesValid = multi_files.length > 0 && multi_files.length <= 5;
 
   return (
     <>
@@ -120,13 +118,13 @@ const Step4 = () => {
             </div>
 
             <div>
-              {files.length > 0 && (
+              {multi_files.length > 0 && (
                 <div className="space-y-2">
                   <div className="text-sm font-medium text-gray-900 dark:text-white">
                     Selected Files:
                   </div>
                   <div className="grid grid-cols-2 gap-2">
-                    {files.map((file, index) => (
+                    {multi_files.map((file, index) => (
                       <div
                         key={index}
                         className="flex items-center space-x-2 text-sm text-gray-600"
@@ -160,7 +158,7 @@ const Step4 = () => {
                 />
                 <div className="flex justify-between items-center">
                   <div className="text-xs text-gray-600">
-                    {files.length} / 5 files selected
+                    {multi_files.length} / 5 files selected
                   </div>
                 </div>
               </div>

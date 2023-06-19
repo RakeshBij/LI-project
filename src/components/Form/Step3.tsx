@@ -41,6 +41,10 @@ const Step3 = () => {
     // Validate the file and proceed to the next step
     // You can perform additional validation or data manipulation here
     console.log("Step 3 Data:", { file });
+
+    // Update the single_file field in the form data
+    dispatch(updateFormData({ single_file: file }));
+
     // Call a function to proceed to the next step
     dispatch(nextStep());
   };

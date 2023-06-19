@@ -32,24 +32,22 @@ const Step2 = () => {
   };
 
   const handleNext = () => {
-    // Dispatch an action to update the form data in the Redux store
     dispatch(
       updateFormData({
-        addressLine1: formData.addressLine1,
-        addressLine2: formData.addressLine2,
+        address_1: formData.addressLine1, // Store addressLine1 in address_1
+        address_2: formData.addressLine2, // Store addressLine2 in address_2
         city: selectedCity,
         state: selectedState,
         pincode: formData.pincode,
         country: selectedCountry,
       })
     );
-    console.log(formData);
+
     dispatch(nextStep());
     // Proceed to the next step or perform any additional logic
   };
 
   const handlePrevious = () => {
-    //
     dispatch(previousStep());
   };
 
@@ -106,9 +104,10 @@ const Step2 = () => {
                 id="addressLine1"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 placeholder="Enter Address Line 1"
-                value={formData.addressLine1}
-                onChange={(e) =>
-                  dispatch(updateFormData({ addressLine1: e.target.value }))
+                value={formData.address_1} // Use formData.address_1 instead of formData.addressLine1
+                onChange={
+                  (e) =>
+                    dispatch(updateFormData({ addressLine1: e.target.value })) // Keep the field name as addressLine1 for consistency
                 }
                 required
               />
@@ -126,9 +125,10 @@ const Step2 = () => {
                 id="addressLine2"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 placeholder="Enter Address Line 2"
-                value={formData.addressLine2}
-                onChange={(e) =>
-                  dispatch(updateFormData({ addressLine2: e.target.value }))
+                value={formData.address_2} // Use formData.address_2 instead of formData.addressLine2
+                onChange={
+                  (e) =>
+                    dispatch(updateFormData({ addressLine2: e.target.value })) // Keep the field name as addressLine2 for consistency
                 }
                 required
               />
