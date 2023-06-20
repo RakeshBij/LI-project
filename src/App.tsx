@@ -6,11 +6,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Dashboard from "./components/Form/Dashboard";
-import Step1 from "./Step1";
-import Step2 from "./Step2";
-import Step3 from "./Step3";
-import Step4 from "./Step4";
-import Step5 from "./Step5";
+import Step1 from "../src/components/Form/Step1";
+import Step2 from "../src/components/Form/Step2";
+import Step3 from "../src/components/Form/Step3";
+import Step4 from "../src/components/Form/Step4";
+import Step5 from "../src/components/Form/Step5";
 import { useSelector } from "react-redux";
 
 const App: React.FC = () => {
@@ -18,7 +18,6 @@ const App: React.FC = () => {
   const [formValues, setFormValues] = useState({});
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const stepData = useSelector((state) => state.step);
-  console.log(stepData);
 
   const handleFormSubmit = () => {
     // Handle form submission logic here

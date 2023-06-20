@@ -60,11 +60,10 @@ const Step5 = () => {
       dispatch(previousStep());
       dispatch(previousStep());
       window.location.reload();
-    }, 4000);
+    }, 8000);
   };
 
   const generateFormData = () => {
-    console.log(formData);
     // const formData = new FormData();
     // formData.append("name", formData.name);
     // formData.append("email", formData.email);
@@ -90,19 +89,21 @@ const Step5 = () => {
           <div className="text-xl font-medium text-gray-900 dark:text-white">
             Step 5: Status
           </div>
-          {!isFormSubmitted && (
+          {/* {!isFormSubmitted && (
             <p className="text-red-500">
               The form submission was not successful. Please try again.
             </p>
-          )}
+          )} */}
 
           <div className="flex justify-between items-center">
             <button
               type="button"
-              className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none"
+              className="w-full relative inline-flex items-center justify-center p-0 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group border-2 border-[bg-gradient-to-br from-[#f96f01] to-[#f9e675]] bg-transparent group-hover:bg-gradient-to-br from-[#f96f01] to-[#f9e675] hover:text-white dark:text-white focus:ring-4 focus:outline-none transform transition-all duration-300 active:scale-90"
               onClick={handleSubmit}
             >
-              Submit Form
+              <span className="w-full relative px-5 py-2.5 rounded-md group-hover:bg-gradient-to-br from-[#f96f01] to-[#f9e675] bg-transparent button-bg">
+                Submit Form
+              </span>
             </button>
           </div>
         </div>

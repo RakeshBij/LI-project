@@ -13,6 +13,10 @@ const Step2 = () => {
   const [selectedState, setSelectedState] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
 
+  const handleChange = (field, value) => {
+    dispatch(updateFormData({ [field]: value }));
+  };
+
   const handleCountryChange = (e) => {
     const country = e.target.value;
     setSelectedCountry(country);
@@ -34,8 +38,8 @@ const Step2 = () => {
   const handleNext = () => {
     dispatch(
       updateFormData({
-        address_1: formData.addressLine1, // Store addressLine1 in address_1
-        address_2: formData.addressLine2, // Store addressLine2 in address_2
+        address_1: formData.address_1,
+        address_2: formData.address_2,
         city: selectedCity,
         state: selectedState,
         pincode: formData.pincode,
@@ -46,6 +50,8 @@ const Step2 = () => {
     dispatch(nextStep());
     // Proceed to the next step or perform any additional logic
   };
+
+  console.clear();
 
   const handlePrevious = () => {
     dispatch(previousStep());
@@ -106,8 +112,7 @@ const Step2 = () => {
                 placeholder="Enter Address Line 1"
                 value={formData.address_1} // Use formData.address_1 instead of formData.addressLine1
                 onChange={
-                  (e) =>
-                    dispatch(updateFormData({ addressLine1: e.target.value })) // Keep the field name as addressLine1 for consistency
+                  (e) => dispatch(updateFormData({ address_1: e.target.value })) // Keep the field name as addressLine2 for consistency
                 }
                 required
               />
@@ -127,8 +132,7 @@ const Step2 = () => {
                 placeholder="Enter Address Line 2"
                 value={formData.address_2} // Use formData.address_2 instead of formData.addressLine2
                 onChange={
-                  (e) =>
-                    dispatch(updateFormData({ addressLine2: e.target.value })) // Keep the field name as addressLine2 for consistency
+                  (e) => dispatch(updateFormData({ address_2: e.target.value })) // Keep the field name as addressLine2 for consistency
                 }
                 required
               />

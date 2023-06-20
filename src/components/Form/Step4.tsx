@@ -19,7 +19,7 @@ const Step4 = () => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setGeolocationStatus("Captured");
-          console.log("Geolocation Coordinates:", position.coords);
+          // console.log("Geolocation Coordinates:", position.coords);
           setGeolocation(
             `${position.coords.latitude},${position.coords.longitude}`
           );
@@ -38,7 +38,7 @@ const Step4 = () => {
 
   const handleFileChange = (event) => {
     const selectedFiles = Array.from(event.target.files);
-    console.log(selectedFiles);
+    // console.log(selectedFiles);
     setMultiFiles(selectedFiles);
   };
 
@@ -61,11 +61,10 @@ const Step4 = () => {
   const handleNext = () => {
     dispatch(
       updateFormData({
-        multi_file: formData.multi_files,
-        geolocation: formData.geolocation,
+        multi_file: multi_files,
+        geolocation: geolocation,
       })
     );
-    console.log(formData);
     dispatch(nextStep());
     // Proceed to the next step or perform any additional logic
   };
